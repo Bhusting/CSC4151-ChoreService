@@ -23,12 +23,14 @@ namespace CSC4151_ChoreService.Controllers
             _choreRepository = choreRepository;
         }
 
-        [HttpGet]        
-        public async Task<IEnumerable<Chore>> Get()
-        {
-            _logger.LogInformation("Getting all Chores");
-            return (await _choreRepository.GetAllChores()).ToArray();
-        }
+        // Getting all records
+
+        //[HttpGet]        
+        //public async Task<IEnumerable<Chore>> Get()
+        //{
+        //    _logger.LogInformation("Getting all Chores");
+        //    return (await _choreRepository.GetAllChores()).ToArray();
+        //}
 
         [HttpGet("{id}")]
         public async Task<Chore> GetChore(Guid id)
