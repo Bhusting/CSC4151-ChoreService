@@ -25,7 +25,7 @@ namespace CSC4151_ChoreService.Controllers
 
         // Getting all records
 
-        //[HttpGet]        
+        //[HttpGet]
         //public async Task<IEnumerable<Chore>> Get()
         //{
         //    _logger.LogInformation("Getting all Chores");
@@ -41,11 +41,11 @@ namespace CSC4151_ChoreService.Controllers
         }
 
         [HttpPost]
-        public async Task<Chore> CreateChore([FromBody] Chore chore)
+        public async Task<IActionResult> CreateChore([FromBody] Chore chore)
         {
             _logger.LogInformation($"Creating Chore");            
             await _choreRepository.CreateChore(chore);
-            return chore;
+            return Ok("Created");
         }
 
         [HttpDelete("{id}")]
@@ -53,7 +53,7 @@ namespace CSC4151_ChoreService.Controllers
         {
             _logger.LogInformation($"Deleting Chore {id}");
             await _choreRepository.DeleteChore(id);
-            return Ok();
+            return Ok("Deleted");
         }
     }
 }

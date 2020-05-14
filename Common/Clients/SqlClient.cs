@@ -67,6 +67,11 @@ namespace Common.Clients
                                         prop.SetValue(obj, Convert.ToInt32(reader[columnName].ToString()));
                                         break;
                                     }
+                                    else if (prop.PropertyType == typeof(Int16))        // For ChoreTypeId
+                                    {
+                                        prop.SetValue(obj, Convert.ToInt16(reader[columnName].ToString()));
+                                        break;
+                                    }
                                     else if (prop.PropertyType == typeof(TimeSpan))
                                     {
                                         prop.SetValue(obj, TimeSpan.Parse(reader[columnName].ToString()));
@@ -111,7 +116,8 @@ namespace Common.Clients
             }
             catch (Exception e)
             {
-                var s = 2;
+                // var s = 2;
+                throw;
             }
         }
 

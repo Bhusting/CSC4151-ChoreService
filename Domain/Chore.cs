@@ -7,12 +7,11 @@ namespace Domain
         public Guid ChoreId { get; set; }
 
         public string ChoreName { get; set; }
-
-        public Guid CompletedByUserId { get; set; }
-        public DateTime CompletionDate { get; set; }
-        public DateTime CompletionTime { get; set; }
+        
+        public string CompletionDate { get; set; }
+        public string CompletionTime { get; set; }
 
         public Guid HouseId { get; set; }
-        public Guid ChoreTypeId { get; set; }
+        public short ChoreTypeId { get; set; }
     }
 }

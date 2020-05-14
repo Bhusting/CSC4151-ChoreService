@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Text;
 
 namespace Common.Builders
@@ -19,7 +20,7 @@ namespace Common.Builders
 
         public static string GetIndividualRecordFromNameBuilder(Type type, string name)
         {
-                return $"SELECT * FROM {type.Name} WHERE {type.Name}Name = \"{name}\"";
+            return $"SELECT * FROM {type.Name} WHERE {type.Name}Name = \"{name}\"";
         }
 
         public static string GetIndividualRecordFromIdBuilder(Type type, Type typeToRetrieve, Guid id)
@@ -39,12 +40,12 @@ namespace Common.Builders
 
         public static string GetIndividualParentFromName(Type type, Type typeToRetrieve, string name)
         {
-                return $"SELECT * FROM {typeToRetrieve.Name} WHERE {typeToRetrieve.Name}Id = (SELECT {typeToRetrieve.Name}Id FROM {type.Name} WHERE {type.Name}Name = \"{name}\")";
+            return $"SELECT * FROM {typeToRetrieve.Name} WHERE {typeToRetrieve.Name}Id = (SELECT {typeToRetrieve.Name}Id FROM {type.Name} WHERE {type.Name}Name = \"{name}\")";
         }
 
         public static string GetLike(Type type, string phrase)
         {
-                return $"SELECT * FROM {type.Name} WHERE {type.Name}Name LIKE \"%{phrase}%\";";
+            return $"SELECT * FROM {type.Name} WHERE {type.Name}Name LIKE \"%{phrase}%\";";
         }
 
         public static string InsertRecord<T>(T obj)
@@ -56,24 +57,25 @@ namespace Common.Builders
 
             foreach (var prop in props)
             {
-                if (!prop.Name.Contains($"{obj.GetType().Name}Id"))
-                {
+                // As discussed that we need to pass the ID manually
+                //if (!prop.Name.Contains($"{obj.GetType().Name}Id"))
+                //{
                     str.Append($"{prop.Name},");
-                }
+                //}
             }
             str.Remove(str.Length - 1, 1);
             str.Append(") VALUES (");
 
             foreach (var prop in props)
             {
-                if (prop.Name != $"{obj.GetType().Name}Id")
-                {
+                //if (prop.Name != $"{obj.GetType().Name}Id")
+                //{
                     var value = prop.GetValue(obj);
-                    if (value.GetType() == typeof(string))
-                        str.Append($"\"{value.ToString()}\",");
+                    if (value.GetType() == typeof(string) || value.GetType() == typeof(Guid) || value.GetType() == typeof(DateTime))
+                        str.Append($"'{value.ToString()}',");
                     else
                         str.Append($"{value.ToString()},");
-                }
+                //}
             }
             str.Remove(str.Length - 1, 1);
             str.Append(");");
