@@ -18,6 +18,8 @@ namespace Common.Repositories
 
         Task DeleteChore(Guid id);
         Task<List<Chore>> GetAllChores();
+        Task<List<Chore>> GetAllChoresByHouseId(string houseId);
+        Task<List<Chore>> GetAllChoresByChoreTypeId(short choretypeId);
 
     }
 }

@@ -13,6 +13,14 @@ namespace Common.Builders
             return $"SELECT * FROM {type.Name}";
         }
 
+        public static string GetRecordsByField(Type type, Type fieldType, string fieldName, string value)
+        {            
+            if (fieldType == typeof(string) || fieldType == typeof(Guid))
+                value = $"'{value}'";
+
+            return $"SELECT * FROM {type.Name} WHERE {fieldName} = {value}";
+        }
+        
         public static string GetIndividualRecordBuilder(Type type, Guid id)
         {
             return $"SELECT * FROM {type.Name} WHERE {type.Name}Id = \'{id}\'";

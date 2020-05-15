@@ -56,5 +56,17 @@ namespace Common.Repositories
             var cmd = SqlCommandBuilder.GetRecords(typeof(Chore));
             return await _sqlClient.Get<Chore>(cmd);
         }
+
+        public async Task<List<Chore>> GetAllChoresByHouseId(string houseId)
+        {
+            var cmd = SqlCommandBuilder.GetRecordsByField(typeof(Chore), typeof(Guid), "HouseId", houseId);
+            return await _sqlClient.Get<Chore>(cmd);
+        }
+
+        public async Task<List<Chore>> GetAllChoresByChoreTypeId(short choretypeId)
+        {
+            var cmd = SqlCommandBuilder.GetRecordsByField(typeof(Chore), typeof(short), "ChoreTypeId", choretypeId.ToString());
+            return await _sqlClient.Get<Chore>(cmd);
+        }
     }
 }

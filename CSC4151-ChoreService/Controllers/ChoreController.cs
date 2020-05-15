@@ -32,6 +32,21 @@ namespace CSC4151_ChoreService.Controllers
         //    return (await _choreRepository.GetAllChores()).ToArray();
         //}
 
+
+        [HttpGet("HouseId/{houseId}")]
+        public async Task<IEnumerable<Chore>> GetByHouseId(string houseId)
+        {
+            _logger.LogInformation("Getting all Chores by HouseId");
+            return (await _choreRepository.GetAllChoresByHouseId(houseId));
+        }
+
+        [HttpGet("ChoreTypeId/{choretypeid}")]
+        public async Task<IEnumerable<Chore>> GetByChoreTypeId(short choretypeId)
+        {
+            _logger.LogInformation("Getting all Chores by ChoreTypeId");
+            return (await _choreRepository.GetAllChoresByChoreTypeId(choretypeId));
+        }
+
         [HttpGet("{id}")]
         public async Task<Chore> GetChore(Guid id)
         {
