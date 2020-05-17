@@ -58,8 +58,17 @@ namespace CSC4151_ChoreService.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateChore([FromBody] Chore chore)
         {
-            _logger.LogInformation($"Creating Chore");            
+            _logger.LogInformation($"Creating Chore");
             await _choreRepository.CreateChore(chore);
+            return Ok("Created");
+        }
+
+        [HttpGet]
+        [Route("id")]
+        public async Task<IActionResult> GetChoreByChoreId(Guid choreId)
+        {
+            _logger.LogInformation($"Creating Chore");
+            await _choreRepository.GetChoreByChoreId(choreId);
             return Ok("Created");
         }
 

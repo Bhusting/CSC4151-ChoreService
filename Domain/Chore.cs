@@ -14,4 +14,6 @@ namespace Domain
         public Guid HouseId { get; set; }
         public short ChoreTypeId { get; set; }
     }
+
+
 }
