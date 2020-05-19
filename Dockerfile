@@ -3,12 +3,13 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["CSC4151-ChoreService/CSC4151-ChoreService.csproj", ""]
-COPY ["Domain/Domain.csproj", "../Domain/"]
-COPY ["Common/Common.csproj", "../Common/"]
+COPY ["CSC4151-ChoreService/CSC4151-ChoreService.csproj", "CSC4151-ChoreService/"]
+COPY ["Domain/Domain.csproj", "Domain/"]
+COPY ["Common/Common.csproj", "Common/"]
 RUN dotnet restore "CSC4151-ChoreService/CSC4151-ChoreService.csproj"
 COPY . .
 WORKDIR "/src/CSC4151-ChoreService"
