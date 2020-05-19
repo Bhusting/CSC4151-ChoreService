@@ -11,7 +11,7 @@ COPY ["Domain/Domain.csproj", "../Domain/"]
 COPY ["Common/Common.csproj", "../Common/"]
 RUN dotnet restore "CSC4151-ChoreService/CSC4151-ChoreService.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/CSC4151-ChoreService"
 RUN dotnet build "CSC4151-ChoreService.csproj" -c Release -o /app/build
 
 FROM build AS publish
