@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["CSC4151-ChoreService.csproj", ""]
-COPY ["../Domain/Domain.csproj", "../Domain/"]
-COPY ["../Common/Common.csproj", "../Common/"]
-RUN dotnet restore "./CSC4151-ChoreService.csproj"
+COPY ["CSC4151-ChoreService/CSC4151-ChoreService.csproj", ""]
+COPY ["Domain/Domain.csproj", "../Domain/"]
+COPY ["Common/Common.csproj", "../Common/"]
+RUN dotnet restore "CSC4151-ChoreService/CSC4151-ChoreService.csproj"
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "CSC4151-ChoreService.csproj" -c Release -o /app/build
