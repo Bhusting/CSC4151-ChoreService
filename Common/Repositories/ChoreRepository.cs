@@ -1,13 +1,9 @@
 ﻿
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
-using Common.Builders;
 using Common.Clients;
-using Common.Settings;
 using Domain;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using SqlCommandBuilder = Common.Builders.SqlCommandBuilder;
 
 namespace Common.Repositories
@@ -33,10 +29,7 @@ namespace Common.Repositories
 
             var chores = await _sqlClient.Get<Chore>(cmd);
 
-            if (chores.Count > 0)
-                return chores[0];
-            else
-                return null;
+            return chores[0];
         }
 
         public async Task CreateChore(Chore chore)
@@ -83,14 +76,14 @@ namespace Common.Repositories
                 var choreFrequency = chores[0].ChoreTypeId;
 
 
-                if (Convert.ToDateTime (completionDate)==DateTime.Now.Date && Convert.ToDateTime(completionTime) <= DateTime.Now.ToLocalTime())
+                if (Convert.ToDateTime(completionDate) == DateTime.Now.Date && Convert.ToDateTime(completionTime) <= DateTime.Now.ToLocalTime())
                 {
                     //update the chore, date and time with whatever (weekly) 
                     //call the command builder for update 
                 }
             }
-                return chores[0];
-           
+            return chores[0];
+
 
         }
     }

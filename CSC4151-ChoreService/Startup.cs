@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Common.Clients;
 using Common.Repositories;
 using Common.Settings;
+using CSC4151_ChoreService.ASB;
+using CSC4151_ChoreService.Handlers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,15 +31,27 @@ namespace CSC4151_ChoreService
         public void ConfigureServices(IServiceCollection services)
         {
             // Settings
-            var settings = new SqlSettings();
-            Configuration.Bind("SQL", settings);
-            services.AddSingleton<SqlSettings>(settings);
+            var sqlSettings = new SqlSettings();
+            Configuration.Bind("SQL", sqlSettings);
+            services.AddSingleton<SqlSettings>(sqlSettings);
+
+            var settings = new Settings();
+            Configuration.Bind("Configuration", settings);
+            services.AddSingleton<Settings>(settings);
 
             // Repositories
             services.AddSingleton<IChoreRepository, ChoreRepository>();
 
             // Clients
             services.AddSingleton<SqlClient>();
+
+            // ServiceBus
+            services.AddSingleton<ServiceBusClient>();
+            services.AddHostedService<EndpointInitializer>();
+
+            // Message Handlers
+            services.AddSingleton<CreateChoreHandler>();
+            services.AddSingleton<DeleteChoreHandler>();
 
             services.AddControllers();
         }
