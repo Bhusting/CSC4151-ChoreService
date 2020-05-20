@@ -29,7 +29,7 @@ namespace CSC4151_ChoreService.ASB
 #if DEBUG
             endpointName = $"Tak.ChoreService.{Environment.MachineName}";
 #else
-            endpointName = "Tak.ProfileService";
+            endpointName = "Tak.ChoreService";
 #endif
 
             await CreateQueueIfNotExist(_settings.ServiceBus, endpointName);

@@ -7,6 +7,7 @@ using Common.Repositories;
 using Common.Settings;
 using CSC4151_ChoreService.ASB;
 using CSC4151_ChoreService.Handlers;
+using CSC4151_ChoreService.Pusher;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,6 +39,10 @@ namespace CSC4151_ChoreService
             var settings = new Settings();
             Configuration.Bind("Configuration", settings);
             services.AddSingleton<Settings>(settings);
+
+            var pusherSettings = new PusherSettings();
+            Configuration.Bind("Pusher", pusherSettings);
+            services.AddSingleton<PusherSettings>(pusherSettings);
 
             // Repositories
             services.AddSingleton<IChoreRepository, ChoreRepository>();
