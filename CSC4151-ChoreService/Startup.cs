@@ -58,6 +58,10 @@ namespace CSC4151_ChoreService
             services.AddSingleton<CreateChoreHandler>();
             services.AddSingleton<DeleteChoreHandler>();
 
+            //Pusher
+            services.AddSingleton<PusherClient>();
+            services.AddHostedService<PusherInitializer>();
+
             services.AddControllers();
         }
 
