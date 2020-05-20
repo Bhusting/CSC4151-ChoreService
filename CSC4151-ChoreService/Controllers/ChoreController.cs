@@ -79,5 +79,15 @@ namespace CSC4151_ChoreService.Controllers
             await _choreRepository.DeleteChore(id);
             return Ok("Deleted");
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateChore(Guid id, [FromBody] Chore chore)
+        {
+            _logger.LogInformation($"Updating Chore {id}");
+            chore.ChoreId = id;
+            await _choreRepository.UpdateChore( chore);
+            return Ok("Updated");
+        }
+
+
     }
-}

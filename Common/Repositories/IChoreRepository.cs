@@ -22,5 +22,7 @@ namespace Common.Repositories
         Task<List<Chore>> GetAllChoresByChoreTypeId(short choretypeId);
         Task<Chore> GetChoreByChoreId(Guid choreId);
 
+        Task UpdateChore(Chore chore);
+
     }
 }

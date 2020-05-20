@@ -69,6 +69,13 @@ namespace Common.Repositories
             return await _sqlClient.Get<Chore>(cmd);
         }
 
+        public async Task UpdateChore(Chore chore)
+        {
+            var cmd = SqlCommandBuilder.UpdateRecord<Chore>(chore);
+            await _sqlClient.Update(cmd);
+
+        }
+
         public async Task<Chore> GetChoreByChoreId(Guid choreId)
         {
             var cmd = SqlCommandBuilder.GetIndividualRecordBuilder(typeof(Chore), choreId);
@@ -83,14 +90,14 @@ namespace Common.Repositories
                 var choreFrequency = chores[0].ChoreTypeId;
 
 
-                if (Convert.ToDateTime (completionDate)==DateTime.Now.Date && Convert.ToDateTime(completionTime) <= DateTime.Now.ToLocalTime())
+                if (Convert.ToDateTime(completionDate) == DateTime.Now.Date && Convert.ToDateTime(completionTime) <= DateTime.Now.ToLocalTime())
                 {
                     //update the chore, date and time with whatever (weekly) 
                     //call the command builder for update 
                 }
             }
-                return chores[0];
-           
+            return chores[0];
+
 
         }
     }
