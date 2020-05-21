@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CSC4151_ChoreService.Controllers
 {
-    [Route("chore")]
+    [Route("Chore")]
     [ApiController]
     public class ChoreController : ControllerBase
     {
@@ -33,18 +33,18 @@ namespace CSC4151_ChoreService.Controllers
         //}
 
 
-        [HttpGet("HouseId/{houseId}")]
+        [HttpGet("House/{houseId}")]
         public async Task<IEnumerable<Chore>> GetByHouseId(string houseId)
         {
             _logger.LogInformation("Getting all Chores by HouseId");
             return (await _choreRepository.GetAllChoresByHouseId(houseId));
         }
 
-        [HttpGet("ChoreTypeId/{choretypeid}")]
-        public async Task<IEnumerable<Chore>> GetByChoreTypeId(short choretypeId)
+        [HttpGet("ChoreType/{choreTypeId}")]
+        public async Task<IEnumerable<Chore>> GetByChoreTypeId(short choreTypeId)
         {
             _logger.LogInformation("Getting all Chores by ChoreTypeId");
-            return (await _choreRepository.GetAllChoresByChoreTypeId(choretypeId));
+            return (await _choreRepository.GetAllChoresByChoreTypeId(choreTypeId));
         }
 
         [HttpGet("{id}")]
@@ -55,39 +55,13 @@ namespace CSC4151_ChoreService.Controllers
             return chore;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateChore([FromBody] Chore chore)
+        /*[HttpGet("{id}")]
+        public async Task<IActionResult> GetChoreByChoreId(Guid id)
         {
             _logger.LogInformation($"Creating Chore");
-            await _choreRepository.CreateChore(chore);
+            await _choreRepository.GetChoreByChoreId(id);
             return Ok("Created");
-        }
-
-        [HttpGet]
-        [Route("id")]
-        public async Task<IActionResult> GetChoreByChoreId(Guid choreId)
-        {
-            _logger.LogInformation($"Creating Chore");
-            await _choreRepository.GetChoreByChoreId(choreId);
-            return Ok("Created");
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteChore(Guid id)
-        {
-            _logger.LogInformation($"Deleting Chore {id}");
-            await _choreRepository.DeleteChore(id);
-            return Ok("Deleted");
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateChore(Guid id, [FromBody] Chore chore)
-        {
-            _logger.LogInformation($"Updating Chore {id}");
-            chore.ChoreId = id;
-            await _choreRepository.UpdateChore( chore);
-            return Ok("Updated");
-        }
-
+        }*/
 
     }
+}
