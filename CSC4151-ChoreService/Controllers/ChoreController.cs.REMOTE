@@ -47,25 +47,13 @@ namespace CSC4151_ChoreService.Controllers
             return (await _choreRepository.GetAllChoresByChoreTypeId(choreTypeId));
         }
 
-        [HttpGet("{choreId}")]
-        public async Task<Chore> GetChore(Guid choreId)
+        [HttpGet("{id}")]
+        public async Task<Chore> GetChore(Guid id)
         {
-            _logger.LogInformation($"Get Chore {choreId}");
-            var chore = await _choreRepository.GetChore(choreId);
+            _logger.LogInformation($"Get Chore {id}");
+            var chore = await _choreRepository.GetChore(id);
             return chore;
         }
-
-        [HttpPut("{choreId}")]
-        public async Task<Chore> UpdateChore(Guid choreId)
-        {
-            _logger.LogInformation($"Update Chore {choreId}");
-            
-             var result = await _choreRepository.UpdateChore(choreId);
-
-            return result;
-        }
-
-        
 
         /*[HttpGet("{id}")]
         public async Task<IActionResult> GetChoreByChoreId(Guid id)

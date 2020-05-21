@@ -105,40 +105,48 @@ namespace Common.Builders
             return null;
         }
 
-
-
-        public static string UpdateRecord<T>(T obj)
+        public static string UpdateRecord(Type type, Guid id, string fieldName, string value)
         {
 
-           var str = new StringBuilder($"UPDATE {obj.GetType().Name} ");
-            var strWhere = new StringBuilder($" WHERE {obj.GetType().Name }Id = ");
-
-            str.Append($"SET ");
-
-           var props = obj.GetType().GetProperties();
-
-            foreach (var prop in props)
-            {
-                var value = prop.GetValue(obj);
-                if (value.GetType() == typeof(string) || value.GetType() == typeof(Guid) || value.GetType() == typeof(DateTime))
-                    value = $"'{value.ToString()}',";
-                else
-                    value = $"{value.ToString()},";
-
-                if (prop.Name.Contains($"{obj.GetType().Name}Id"))
-                {
-                    strWhere.Append($"{value};");                   
-                }
-                else
-                {
-                    str.Append($"{prop.Name} = {value},");
-                }
-            }
-            str.Remove(str.Length - 1, 1);
-            str.Append(strWhere);            
-
-            return str.ToString();
+            var str =$"UPDATE {type.Name} SET {fieldName} = '{value}' WHERE ChoreId ='{id.ToString()}'";
+            return str; 
         }
+
+        //public static string UpdateRecord<T>(T obj)
+        //{
+
+        //    var str=  $"UPDATE {obj.GetType().Name} SET ChoreName = {obj.GetType().Name} WHERE ChoreId = {obj.GetType().Name}Id ";
+        //    return str; 
+        //}
+
+           //var str = new StringBuilder($"UPDATE {obj.GetType().Name} ");
+           // var strWhere = new StringBuilder($" WHERE {obj.GetType().Name }Id = ");
+
+           // str.Append($"SET ");
+           //var props = obj.GetType().GetProperties();
+
+           // foreach (var prop in props)
+           // {
+           //     var value = prop.GetValue(obj);
+           //     if (value.GetType() == typeof(string) || value.GetType() == typeof(Guid) || value.GetType() == typeof(DateTime))
+           //         value = $"'{value.ToString()}',";
+           //     else
+           //         value = $"{value.ToString()},";
+
+           //     if (prop.Name.Contains($"{obj.GetType().Name}Id"))
+           //     {
+           //         strWhere.Append($"{value};");                   
+           //     }
+           //     else
+           //     {
+           //         str.Append($"{prop.Name} = {value},");
+           //     }
+           // }
+           // str.Remove(str.Length - 1, 1);
+           // str.Append(strWhere);            
+
+           // return str.ToString();
+        
     }
 
 }
