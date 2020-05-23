@@ -4,6 +4,8 @@ using Common.Time;
 using Domain;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using SqlCommandBuilder = Common.Builders.SqlCommandBuilder;
 
@@ -69,14 +71,14 @@ namespace Common.Repositories
 
         public async Task UpdateChore(Chore chore)
         {
-            var cmd = SqlCommandBuilder.UpdateRecord(typeof(Chore), chore.ChoreId, "ChoreName", chore.ChoreName );
+            var cmd = SqlCommandBuilder.UpdateRecord(typeof(Chore), chore.ChoreId, "ChoreName", chore.ChoreName);
             await _sqlClient.Update(cmd);
 
         }
 
-        public async Task<Chore> UpdateChore(Guid choreId)
+        public async Task<Chore> UpdateChore(Guid choreId, bool isCompleted)
         {
-           
+
             var cmd = SqlCommandBuilder.GetIndividualRecordBuilder(typeof(Chore), choreId);
 
             var chores = await _sqlClient.Get<Chore>(cmd);
@@ -84,10 +86,12 @@ namespace Common.Repositories
             if (chores.Count > 0)
             {
 
-                var completionDate = chores[0].CompletionDate;
-                var completionTime = chores[0].CompletionTime.ParseEndTime(); 
-                var choreFrequency = chores[0].ChoreTypeId;
-
+                CultureInfo provider = CultureInfo.InvariantCulture;
+                var chore = chores.First();
+                var completionDate = DateTime.ParseExact(chore.CompletionDate, "MM/dd/yyyy", provider).Date;
+                var completionTime = DateTime.ParseExact(chore.CompletionTime, "HH:mm", provider);
+                var choreFrequency = (ChoreServiceType)chore.ChoreTypeId;
+                var today = DateTime.Now;
                 //0- daily
                 //1- weekly
                 //2- monthly
@@ -98,39 +102,59 @@ namespace Common.Repositories
 
 
                 //if (Convert.ToDateTime(completionDate) == DateTime.Now.Date && Convert.ToDateTime(completionTime) <= DateTime.Now.ToLocalTime())
-
-                // 
-
-                if (Convert.ToDateTime(completionDate) == DateTime.Now.Date)
+                // on the date of the completion date , it updates to the next freq. 
+                // example ; User puts in completion date of chore 4:00am 5/23/2020
+                // 1 options : user say its completed - this triggers the update , and it updates to next freq . if the completion time is 5:00am,
+                // and the user completes it at 4:30am, it should trigger the update.
+                // 2 option: even if the user does not complete it, at the end of the time, it will update anyways. 
+                if (completionDate == today.Date)
                 {
-                    DateTime updatedCompletionDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, completionTime.Hours, completionTime.Minutes, completionTime.Seconds);
-
-                   
-                    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Daily))
+                    if(completionTime.TimeOfDay < today.TimeOfDay || isCompleted==true)
                     {
-                        updatedCompletionDate = Convert.ToDateTime(completionDate).AddDays(1);
+                        if (choreFrequency == ChoreServiceType.Daily)
+                            completionDate = completionDate.AddDays(1);
+                        else if(choreFrequency == ChoreServiceType.Weekly)
+                            completionDate = completionDate.AddDays(7);
+                        else if (choreFrequency == ChoreServiceType.Monthly)
+                            completionDate = completionDate.AddMonths(1);
+                        else if (choreFrequency == ChoreServiceType.Yearly)
+                            completionDate = completionDate.AddYears(1);
                     }
-                    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Weekly))
-                    {
-                        updatedCompletionDate = Convert.ToDateTime(completionDate).AddDays(7);
-                    }
-                    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Monthly))
-                    {
-                        updatedCompletionDate = Convert.ToDateTime(completionDate).AddMonths(1);
-                    }
-                    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Yearly))
-                    {
-                        updatedCompletionDate = Convert.ToDateTime(completionDate).AddYears(1);
-                    }
-
-
-                    var updateCmd = SqlCommandBuilder.UpdateRecord(typeof(Chore), choreId, "CompletionDate", updatedCompletionDate.Date.ToString("dd/MM/yyyy"));
-                    await _sqlClient.Update(updateCmd);
-
                 }
-            }
-            return chores[0]; //updating the old one.
+                chore.CompletionDate = completionDate.ToString("MM/dd/yyyy");
+                var updateCmd = SqlCommandBuilder.UpdateRecord(typeof(Chore), choreId, "CompletionDate", chore.CompletionDate);
+                await _sqlClient.Update(updateCmd);
+                return chore;
+                //if (Convert.ToDateTime(completionDate) == DateTime.Now.Date)
+                //{
+                //    DateTime updatedCompletionDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, completionTime.Hours, completionTime.Minutes, completionTime.Seconds);
 
+
+                //    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Daily))
+                //    {
+                //        updatedCompletionDate = Convert.ToDateTime(completionDate).AddDays(1);
+                //    }
+                //    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Weekly))
+                //    {
+                //        updatedCompletionDate = Convert.ToDateTime(completionDate).AddDays(7);
+                //    }
+                //    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Monthly))
+                //    {
+                //        updatedCompletionDate = Convert.ToDateTime(completionDate).AddMonths(1);
+                //    }
+                //    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Yearly))
+                //    {
+                //        updatedCompletionDate = Convert.ToDateTime(completionDate).AddYears(1);
+                //    }
+
+
+                //    var updateCmd = SqlCommandBuilder.UpdateRecord(typeof(Chore), choreId, "CompletionDate", updatedCompletionDate.Date.ToString("dd/MM/yyyy"));
+                //    await _sqlClient.Update(updateCmd);
+
+                //}
+            }
+            //return chores[0]; //updating the old one.
+            return null;
 
         }
 

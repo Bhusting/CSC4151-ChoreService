@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Common.Repositories;
 using Domain;
+using Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -56,11 +57,11 @@ namespace CSC4151_ChoreService.Controllers
         }
 
         [HttpPut("{choreId}")]
-        public async Task<Chore> UpdateChore(Guid choreId)
+        public async Task<Chore> UpdateChore(Guid choreId, [FromBody] UpdateChoreModel model)
         {
             _logger.LogInformation($"Update Chore {choreId}");
             
-             var result = await _choreRepository.UpdateChore(choreId);
+             var result = await _choreRepository.UpdateChore(choreId, model.IsCompleted);
 
             return result;
         }

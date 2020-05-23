@@ -1,4 +1,5 @@
 using Domain;
+using Domain.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System;
@@ -11,6 +12,7 @@ namespace EndToEndTests
     [TestClass]
     public class ChoreAPITests
     {
+        Guid choreId = new Guid("802AE871-4282-424C-8C01-FE8267D30E1C");
         [TestMethod]
         public async Task  Test_GetChore()
         {
@@ -35,10 +37,10 @@ namespace EndToEndTests
 
             var chore = new Chore
             {
-                ChoreId = new Guid("A53E6B32-02E4-4E6C-970E-C2973D3CC8C2"),
+                ChoreId = choreId,
                 ChoreName="Test Chore",
-                CompletionDate="07/05/2019",
-                CompletionTime="15:30",
+                CompletionDate="05/23/2020",
+                CompletionTime="03:30",
                 HouseId = Guid.Empty,
                 ChoreTypeId=0
             };
@@ -58,13 +60,33 @@ namespace EndToEndTests
         {
             var httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:50279/") };
 
-            var res = await httpClient.DeleteAsync($"Chore/A53E6B32-02E4-4E6C-970E-C2973D3CC8C2");
+            var res = await httpClient.DeleteAsync($"Chore/{choreId}");
 
             Assert.IsTrue(res.IsSuccessStatusCode);
 
             var body = await res.Content.ReadAsStringAsync();
 
             Assert.IsTrue(body == "Deleted");
+        }
+
+        [TestMethod]
+        public async Task Test_UpdateChore()
+        {
+            var httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:50279/") };
+
+            var model = new UpdateChoreModel() { IsCompleted = true };
+            var json = JsonConvert.SerializeObject(model);
+            var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");            
+            var res = await httpClient.PutAsync($"Chore/{choreId}", stringContent);
+
+            Assert.IsTrue(res.IsSuccessStatusCode);
+
+            var body = await res.Content.ReadAsStringAsync();
+
+            var chore = JsonConvert.DeserializeObject<Chore>(body);
+
+            Assert.IsTrue(chore.ChoreId == choreId);
+            Assert.IsTrue(chore.CompletionDate == "05/23/2020");
         }
     }
 }
