@@ -1,6 +1,5 @@
 ﻿
 using Common.Clients;
-using Common.Time;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -125,98 +124,15 @@ namespace Common.Repositories
                 var updateCmd = SqlCommandBuilder.UpdateRecord(typeof(Chore), choreId, "CompletionDate", chore.CompletionDate);
                 await _sqlClient.Update(updateCmd);
                 return chore;
-                //if (Convert.ToDateTime(completionDate) == DateTime.Now.Date)
-                //{
-                //    DateTime updatedCompletionDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, completionTime.Hours, completionTime.Minutes, completionTime.Seconds);
 
-
-                //    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Daily))
-                //    {
-                //        updatedCompletionDate = Convert.ToDateTime(completionDate).AddDays(1);
-                //    }
-                //    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Weekly))
-                //    {
-                //        updatedCompletionDate = Convert.ToDateTime(completionDate).AddDays(7);
-                //    }
-                //    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Monthly))
-                //    {
-                //        updatedCompletionDate = Convert.ToDateTime(completionDate).AddMonths(1);
-                //    }
-                //    if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Yearly))
-                //    {
-                //        updatedCompletionDate = Convert.ToDateTime(completionDate).AddYears(1);
-                //    }
-
-
-                //    var updateCmd = SqlCommandBuilder.UpdateRecord(typeof(Chore), choreId, "CompletionDate", updatedCompletionDate.Date.ToString("dd/MM/yyyy"));
-                //    await _sqlClient.Update(updateCmd);
-
-                //}
+                
             }
-            //return chores[0]; //updating the old one.
+            
             return null;
 
         }
 
-
-
-        //public async Task<int> UpdateChore(Guid choreId)
-        //{
-
-        //    var cmd = SqlCommandBuilder.GetIndividualRecordBuilder(typeof(Chore), choreId);
-
-        //    var chores = await _sqlClient.Get<Chore>(cmd);
-
-        //    if (chores.Count > 0)
-        //    {
-
-        //        var completionDate = chores[0].CompletionDate;
-        //        // var completionTime = chores[0].CompletionTime;
-        //        var choreFrequency = chores[0].ChoreTypeId;
-
-        //        //0- daily
-        //        //1- weekly
-        //        //2- monthly
-        //        //3- yearly
-        //        //we should maintian the chore freq in an enum. 
-        //        //update the chore, date and time with whatever (weekly)
-        //        //calling the chore, if there is a chore, checking the logic, then update the date. 
-
-
-        //        //if (Convert.ToDateTime(completionDate) == DateTime.Now.Date && Convert.ToDateTime(completionTime) <= DateTime.Now.ToLocalTime())
-
-        //        if (Convert.ToDateTime(completionDate) == DateTime.Now.Date)
-        //        {
-        //            DateTime updatedCompletionDate = DateTime.Now;
-
-        //            if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Daily))
-        //            {
-        //                updatedCompletionDate = Convert.ToDateTime(completionDate).AddDays(1);
-        //            }
-        //            if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Weekly))
-        //            {
-        //                updatedCompletionDate = Convert.ToDateTime(completionDate).AddDays(7);
-        //            }
-        //            if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Monthly))
-        //            {
-        //                updatedCompletionDate = Convert.ToDateTime(completionDate).AddMonths(1);
-        //            }
-        //            if (Convert.ToInt16(choreFrequency) == Convert.ToInt16(ChoreServiceType.Yearly))
-        //            {
-        //                updatedCompletionDate = Convert.ToDateTime(completionDate).AddYears(1);
-        //            }
-
-
-        //            var updateCmd = SqlCommandBuilder.UpdateRecord(typeof(Chore), choreId, "CompletionDate", updatedCompletionDate.Date.ToString("dd/MM/yyyy"));
-        //            await _sqlClient.Update(updateCmd);
-
-        //        }
-        //    }
-        //    return chores[0];
-
-
-        //}
-        // have a switch case 
+               
         public enum ChoreServiceType
         {
             Daily = 0,
