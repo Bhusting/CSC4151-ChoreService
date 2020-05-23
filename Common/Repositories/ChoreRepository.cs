@@ -31,7 +31,10 @@ namespace Common.Repositories
 
             var chores = await _sqlClient.Get<Chore>(cmd);
 
-            return chores[0];
+            if (chores.Count > 0)
+                return chores[0];
+            else
+                return null;
         }
 
         public async Task CreateChore(Chore chore)
