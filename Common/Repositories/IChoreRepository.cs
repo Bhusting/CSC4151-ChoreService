@@ -22,7 +22,7 @@ namespace Common.Repositories
         Task<List<Chore>> GetAllChoresByChoreTypeId(short choretypeId);
         Task<Chore> UpdateChore(Guid choreId, bool isCompleted);
        // Task<int> UpdateChore(Guid choreId);
-        Task UpdateChore(Chore cho);
+        Task UpdateChore(Chore chore);
 
     }
 }

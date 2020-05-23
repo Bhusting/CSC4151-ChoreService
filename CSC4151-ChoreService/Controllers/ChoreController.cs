@@ -57,11 +57,11 @@ namespace CSC4151_ChoreService.Controllers
         }
 
         [HttpPut("{choreId}")]
-        public async Task<Chore> UpdateChore(Guid choreId, [FromBody] UpdateChoreModel model)
+        public async Task<Chore> UpdateChore(Guid choreId, [FromBody] UpdateChoreModel? model)
         {
             _logger.LogInformation($"Update Chore {choreId}");
-            
-             var result = await _choreRepository.UpdateChore(choreId, model.IsCompleted);
+
+             var result = await _choreRepository.UpdateChore(choreId, (model?.IsCompleted).GetValueOrDefault(false));
 
             return result;
         }
