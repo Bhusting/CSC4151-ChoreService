@@ -20,7 +20,9 @@ namespace Common.Repositories
         Task<List<Chore>> GetAllChores();
         Task<List<Chore>> GetAllChoresByHouseId(string houseId);
         Task<List<Chore>> GetAllChoresByChoreTypeId(short choretypeId);
-        Task<Chore> GetChoreByChoreId(Guid choreId);
+        Task<Chore> UpdateChore(Guid choreId, bool isCompleted); //main
+       
+        Task UpdateChore(Chore chore);
 
     }
 }

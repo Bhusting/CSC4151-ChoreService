@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "..\Domain\Domain.csproj", "{A3530C8E-AE3F-4470-9FDB-DCFEBD5F6D28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndToEndTests", "..\EndToEndTests\EndToEndTests.csproj", "{AC131979-1141-4975-97DF-415F7D9CF65D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreServiceTests", "..\ChoreServiceTests\ChoreServiceTests.csproj", "{AD332A51-6FC4-4962-9D61-DDA619A590C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{A3530C8E-AE3F-4470-9FDB-DCFEBD5F6D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3530C8E-AE3F-4470-9FDB-DCFEBD5F6D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3530C8E-AE3F-4470-9FDB-DCFEBD5F6D28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC131979-1141-4975-97DF-415F7D9CF65D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC131979-1141-4975-97DF-415F7D9CF65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC131979-1141-4975-97DF-415F7D9CF65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC131979-1141-4975-97DF-415F7D9CF65D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD332A51-6FC4-4962-9D61-DDA619A590C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD332A51-6FC4-4962-9D61-DDA619A590C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD332A51-6FC4-4962-9D61-DDA619A590C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD332A51-6FC4-4962-9D61-DDA619A590C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

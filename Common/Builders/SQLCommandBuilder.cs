@@ -104,5 +104,16 @@ namespace Common.Builders
             }
             return null;
         }
+
+        public static string UpdateRecord(Type type, Guid id, string fieldName, string value)
+        {
+
+            var str =$"UPDATE {type.Name} SET {fieldName} = '{value}' WHERE ChoreId ='{id.ToString()}'";
+            return str; 
+        }
+
+        
+        
     }
+
 }

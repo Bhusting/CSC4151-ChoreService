@@ -133,5 +133,18 @@ namespace Common.Clients
                 }
             }
         }
+
+        public async Task Update(string cmd)
+        {
+            using (var sqlConnection =
+                new SqlConnection(ConnectionStringBuilder.BuildSQLConnectionString(_sqlSettings)))
+            {
+                await sqlConnection.OpenAsync();
+                using (var sqlCmd = new SqlCommand(cmd, sqlConnection))
+                {
+                    sqlCmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
