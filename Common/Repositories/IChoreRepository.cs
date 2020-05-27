@@ -14,15 +14,20 @@ namespace Common.Repositories
         /// <param name="id">Id of the Chore to retrieve.</param>
         /// <returns>Chore</returns>
         Task<Chore> GetChore(Guid id);
+
         Task CreateChore(Chore chore);
 
         Task DeleteChore(Guid id);
+
         Task<List<Chore>> GetAllChores();
-        Task<List<Chore>> GetAllChoresByHouseId(string houseId);
+
+        Task<List<Chore>> GetAllChoresByHouseId(Guid houseId);
+
+        Task<List<Chore>> GetAllChoresByHouseIdToday(Guid houseId);
+
         Task<List<Chore>> GetAllChoresByChoreTypeId(short choretypeId);
-        Task<Chore> UpdateChore(Guid choreId, bool isCompleted); //main
        
-        Task UpdateChore(Chore chore);
+        Task<Chore> UpdateChore(Chore chore, bool isComplete);
 
     }
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\CSC4151-ChoreService\\CSC4151-ChoreService.csproj": {}
+    "C:\\repos\\CSC4151-ChoreService\\CSC4151-ChoreService\\CSC4151-ChoreService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Common\\Common.csproj": {
+    "C:\\repos\\CSC4151-ChoreService\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\repos\\CSC4151-ChoreService\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\Ruqaya Hyder\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Common\\obj\\",
+        "projectPath": "C:\\repos\\CSC4151-ChoreService\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\Brian Husting\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\CSC4151-ChoreService\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ruqaya Hyder\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Brian Husting\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Domain\\Domain.csproj"
+              "C:\\repos\\CSC4151-ChoreService\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\repos\\CSC4151-ChoreService\\Domain\\Domain.csproj"
               }
             }
           }
@@ -65,24 +65,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\CSC4151-ChoreService\\CSC4151-ChoreService.csproj": {
+    "C:\\repos\\CSC4151-ChoreService\\CSC4151-ChoreService\\CSC4151-ChoreService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\CSC4151-ChoreService\\CSC4151-ChoreService.csproj",
+        "projectUniqueName": "C:\\repos\\CSC4151-ChoreService\\CSC4151-ChoreService\\CSC4151-ChoreService.csproj",
         "projectName": "CSC4151-ChoreService",
-        "projectPath": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\CSC4151-ChoreService\\CSC4151-ChoreService.csproj",
-        "packagesPath": "C:\\Users\\Ruqaya Hyder\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\CSC4151-ChoreService\\obj\\",
+        "projectPath": "C:\\repos\\CSC4151-ChoreService\\CSC4151-ChoreService\\CSC4151-ChoreService.csproj",
+        "packagesPath": "C:\\Users\\Brian Husting\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\CSC4151-ChoreService\\CSC4151-ChoreService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ruqaya Hyder\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Brian Husting\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -95,11 +95,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Common\\Common.csproj"
+              "C:\\repos\\CSC4151-ChoreService\\Common\\Common.csproj": {
+                "projectPath": "C:\\repos\\CSC4151-ChoreService\\Common\\Common.csproj"
               },
-              "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Domain\\Domain.csproj"
+              "C:\\repos\\CSC4151-ChoreService\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\repos\\CSC4151-ChoreService\\Domain\\Domain.csproj"
               }
             }
           }
@@ -148,24 +148,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Domain\\Domain.csproj": {
+    "C:\\repos\\CSC4151-ChoreService\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\repos\\CSC4151-ChoreService\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Ruqaya Hyder\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ruqaya Hyder\\source\\CSC4151-ChoreService\\Domain\\obj\\",
+        "projectPath": "C:\\repos\\CSC4151-ChoreService\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Brian Husting\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\CSC4151-ChoreService\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Ruqaya Hyder\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Brian Husting\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -203,7 +203,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

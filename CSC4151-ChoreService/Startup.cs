@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PusherServer;
 
 namespace CSC4151_ChoreService
 {
@@ -55,12 +56,11 @@ namespace CSC4151_ChoreService
             services.AddHostedService<EndpointInitializer>();
 
             // Message Handlers
-            services.AddSingleton<CreateChoreHandler>();
-            services.AddSingleton<DeleteChoreHandler>();
+            services.AddTransient<CreateChoreHandler>();
+            services.AddTransient<DeleteChoreHandler>();
 
             //Pusher
-            services.AddSingleton<PusherClient>();
-            services.AddHostedService<PusherInitializer>();
+            services.AddSingleton<LazyPusher>();
 
             services.AddControllers();
         }

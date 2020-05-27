@@ -1,5 +1,4 @@
 using Domain;
-using Domain.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using System;
@@ -14,9 +13,9 @@ namespace ChoreServiceTests.EndToEndTests
     {
         Guid choreId = new Guid("802AE871-4282-424C-8C01-FE8267D30E1C");
         [TestMethod]
-        public async Task  Test_GetChore()
+        public async Task Test_GetChore()
         {
-                var httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:50279/") };
+                var httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:5000/") };
 
                 var res = await httpClient.GetAsync($"Chore/{Guid.Empty}");
 
@@ -30,18 +29,34 @@ namespace ChoreServiceTests.EndToEndTests
                 Assert.IsTrue(chore.ChoreName== "test");
         }
 
-        
+        [TestMethod]
+        public async Task GetChoreByHouse()
+        {
+            var httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:5000/") };
+
+            var res = await httpClient.GetAsync($"Chore/House/{Guid.Empty}");
+
+            Assert.IsTrue(res.IsSuccessStatusCode);
+        }
+
+
+        [TestMethod]
+        public async Task GetChoreByHouseToday()
+        {
+            var httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:5000/") };
+
+            var res = await httpClient.GetAsync($"Chore/House/{Guid.Empty}/Today");
+            
+            Assert.IsTrue(res.IsSuccessStatusCode);
+        }
 
         
         [TestMethod]
         public async Task Test_UpdateChore()
         {
-            var httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:50279/") };
-
-            var model = new UpdateChoreModel() { IsCompleted = true };
-            var json = JsonConvert.SerializeObject(model);
-            var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");            
-            var res = await httpClient.PutAsync($"Chore/{choreId}", stringContent);
+            var httpClient = new HttpClient() { BaseAddress = new Uri("http://localhost:5000/") };
+    
+            var res = await httpClient.PutAsync($"Chore/{choreId}", new StringContent(""));
 
             Assert.IsTrue(res.IsSuccessStatusCode);
 
