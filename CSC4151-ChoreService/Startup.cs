@@ -58,6 +58,7 @@ namespace CSC4151_ChoreService
             // Message Handlers
             services.AddTransient<CreateChoreHandler>();
             services.AddTransient<DeleteChoreHandler>();
+            services.AddTransient<CompleteChoreHandler>();
 
             //Pusher
             services.AddSingleton<LazyPusher>();
