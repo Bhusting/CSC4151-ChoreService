@@ -129,16 +129,33 @@ namespace Common.Repositories
             // 2 option: even if the user does not complete it, at the end of the time, it will update anyways. 
             if (completionDate < today.Date || isComplete)
             {
-                while (completionDate < today.Date)
+                if (!isComplete)
                 {
-                    if (choreFrequency == ChoreServiceType.Daily)
-                        completionDate = completionDate.AddDays(1);
-                    else if (choreFrequency == ChoreServiceType.Weekly)
-                        completionDate = completionDate.AddDays(7);
-                    else if (choreFrequency == ChoreServiceType.Monthly)
-                        completionDate = completionDate.AddMonths(1);
-                    else if (choreFrequency == ChoreServiceType.Yearly)
-                        completionDate = completionDate.AddYears(1);
+                    while (completionDate < today.Date)
+                    {
+                        if (choreFrequency == ChoreServiceType.Daily)
+                            completionDate = completionDate.AddDays(1);
+                        else if (choreFrequency == ChoreServiceType.Weekly)
+                            completionDate = completionDate.AddDays(7);
+                        else if (choreFrequency == ChoreServiceType.Monthly)
+                            completionDate = completionDate.AddMonths(1);
+                        else if (choreFrequency == ChoreServiceType.Yearly)
+                            completionDate = completionDate.AddYears(1);
+                    }
+                }
+                else
+                {
+                    while (completionDate <= today.Date)
+                    {
+                        if (choreFrequency == ChoreServiceType.Daily)
+                            completionDate = completionDate.AddDays(1);
+                        else if (choreFrequency == ChoreServiceType.Weekly)
+                            completionDate = completionDate.AddDays(7);
+                        else if (choreFrequency == ChoreServiceType.Monthly)
+                            completionDate = completionDate.AddMonths(1);
+                        else if (choreFrequency == ChoreServiceType.Yearly)
+                            completionDate = completionDate.AddYears(1);
+                    }
                 }
 
                 updated = true;
